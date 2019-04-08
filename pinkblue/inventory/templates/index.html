@@ -1,10 +1,50 @@
 {% extends 'base.html' %}
 {% block content %}
+<div>
+        <form name="loginForm" method="post" action="login.php">
+                <table width="20%" bgcolor="0099CC" align="center">        
+                        <tr>
+                                <td colspan=2><center><font size=4><b>Login</b></font></center></td>
+                        </tr>
+                                
+                        <tr>
+                                <td>Username:</td>
+                                <td><input type="text" size=25 name="username"></td>
+                        </tr>
+                                
+                        <tr>
+                                <td>Password:</td>
+                                <td><input type="Password" size=25 name="password"></td>
+                        </tr>
+                                
+                        <tr>
+                                <td ><input type="Reset"></td>
+                                <td><input type="submit" onclick="return check(this.form)" value="Login"></td>
+                        </tr>
+                                
+                </table>
+        </form>
+        <script language="javascript">
+                function check(form)
+                {
+                        if(form.userid.value == "Roseindia" && form.pwd.value == "Roseindia")
+                                {
+                                        return true;
+                                }
+                                else
+                                {
+                                        alert("Error Password or Username")
+                                        return false;
+                                }
+                                }
+        </script>
+</div>
 
-<form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">submit</button>
-</form>
-
+<div align="center">
+        <form name="signin" method="post">
+                {% csrf_token %}
+                {% include 'bs.html' with form=form %}
+                <button type="submit">submit</button>
+        </form>
+</div>
 {% endblock %}
