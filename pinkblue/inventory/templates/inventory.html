@@ -1,17 +1,32 @@
-{% extends 'base.html' %}
-{% load render_table from django_tables2 %}
 {% block content %}
-
-    <div align="center">
-        <table>
-                {% render_table queryset %}
-        </table>
-    </div>
-
-    <form method="post">
-        {% csrf_token %}
-        {% include 'bs.html' with form=form %}
-        <button type="submit">submit</button>
-    </form>
-
+<table>
+    <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Vendor</th>
+        <th>MRP</th>
+        <th>Batch Number</th>
+        <th>Batch date</th>
+        <th>Quantity</th>
+        <th>Status</th>
+    </tr>
+    {% for item in queryset %}
+    <tr> 
+        <td>{{ item.product_id }}</td>
+        <td>{{ item.product_name }}</td>
+        <td>{{ item.vendor }}</td>
+        <td>{{ item.mrp }}</td>
+        <td>{{ item.batch_num }}</td>
+        <td>{{ item.batch_date }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.status }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" name="product" value="product">Add</button>
+</form>
 {% endblock %}

@@ -12,3 +12,7 @@ class InventoryForm(forms.ModelForm):
         model = Inventory
         feilds = "__all__"
         exclude = []
+
+class LoginForm(forms.Form): #Not inheriting from forms.ModelForm
+    username = forms.CharField(max_length=100)
+    password = forms.CharField(max_length=100)
